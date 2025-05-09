@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Zoho CRM Form</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      body {
+        margin: 0;
+        padding: 20px;
+        font-family: sans-serif;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="formContainer"></div>
+    <script
+      id="formScript5637176000023189080"
+      src="https://crm.zoho.com/crm/WebFormServeServlet?rid=99633c0bcd86d1321a445a9784e86ebe32ffae7787ba56020afa2ba3be36aca411ac88a84eb2724022dfeee79888ac35gid3f8136f40b77c8376d6c66397b853ac95637ce94548b5fa8890a812b98f8650a&script=$sYG"
+    ></script>
+    <style>
+      :root {
+        --background: 0 0% 100%;
+        --foreground: 20 14.3% 4.1%;
+        --muted: 60 4.8% 95.9%;
+        --muted-foreground: 25 5.3% 44.7%;
+        --card: 0 0% 100%;
+        --card-foreground: 20 14.3% 4.1%;
+        --border: 20 5.9% 90%;
+        --input: 20 5.9% 90%;
+        --primary: 24 100% 63%;
+        --primary-foreground: 0 0% 100%;
+        --secondary: 350 80% 41%;
+        --secondary-foreground: 0 0% 100%;
+        --accent: 348 90% 50%;
+        --accent-foreground: 0 0% 100%;
+        --destructive: 0 84.2% 60.2%;
+        --destructive-foreground: 60 9.1% 97.8%;
+        --ring: 24 100% 63%;
+        --radius: 0.5rem;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: "Inter", sans-serif;
+        background-color: hsl(var(--background));
+        color: hsl(var(--foreground));
+        padding: 0em;
+        max-width: 100%;
+        margin: auto;
+      }
+
+      /* === Zoho Form Theming === */
+      .zcwf_lblLeft .zcwf_row {
+        margin-bottom: 0.75rem !important;
+      }
+
+      .zcwf_lblLeft .zcwf_col_lab {
+        font-weight: 500;
+        font-size: 0.875rem;
+        margin-bottom: 0.2rem;
+        display: block;
+        color: hsl(var(--muted-foreground));
+      }
+
+      .zcwf_lblLeft .zcwf_col_fld {
+        width: 100%;
+      }
+
+      .zcwf_lblLeft .zcwf_col_fld input[type="text"],
+      .zcwf_lblLeft .zcwf_col_fld input[type="email"],
+      .zcwf_lblLeft .zcwf_col_fld input[type="tel"],
+      .zcwf_lblLeft .zcwf_col_fld select,
+      .zcwf_lblLeft .zcwf_col_fld textarea {
+        width: 100%;
+        border: 1px solid hsl(var(--border));
+        border-radius: var(--radius);
+        padding: 0.75rem;
+        font-size: 0.875rem;
+        line-height: 1.5rem;
+        background-color: white;
+        transition:
+          border-color 0.2s,
+          box-shadow 0.2s;
+      }
+
+      .zcwf_lblLeft .zcwf_col_fld input:focus,
+      .zcwf_lblLeft .zcwf_col_fld textarea:focus,
+      .zcwf_lblLeft .zcwf_col_fld select:focus {
+        outline: none;
+        border-color: hsl(var(--primary));
+        box-shadow: 0 0 0 1px hsl(var(--primary));
+      }
+
+      .zcwf_lblLeft .zcwf_button {
+        font-size: 1rem;
+        font-weight: 600;
+        padding: 0.75rem 1.5rem;
+        border-radius: var(--radius);
+        border: none;
+        cursor: pointer;
+        color: white;
+        background: linear-gradient(90deg, #ff8440 0%, #bb162b 100%);
+        transition: background 0.3s ease;
+      }
+
+      .zcwf_lblLeft .zcwf_button:hover {
+        background: linear-gradient(90deg, #bb162b 0%, #ff8440 100%);
+      }
+
+      .zcwf_lblLeft input[type="reset"] {
+        display: none !important;
+      }
+
+      .zcwf_title,
+      .zcwf_lblTopHeading {
+        display: none !important;
+      }
+
+      /* Extra spacing correction between header and form */
+      .zcwf_lblLeft .zcwf_row:nth-of-type(1) {
+        margin-top: -4rem !important;
+        padding-top: 0 !important;
+      }
+    </style>
+
+    <script>
+      function sendHeightToParent() {
+        const height = document.body.scrollHeight;
+        window.parent.postMessage({ type: "ZOHO_FORM_HEIGHT", height }, "*");
+      }
+
+      // Observe DOM changes (Zoho loads form dynamically)
+      const observer = new MutationObserver(() => {
+        sendHeightToParent();
+      });
+
+      observer.observe(document.body, {
+        childList: true,
+        subtree: true,
+      });
+
+      // Also send initial height after delay
+      setTimeout(sendHeightToParent, 1000);
+    </script>
+  </body>
+</html>

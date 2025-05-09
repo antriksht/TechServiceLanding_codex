@@ -1,0 +1,129 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: 0 0% 100%;
+  --foreground: 20 14.3% 4.1%;
+  --muted: 60 4.8% 95.9%;
+  --muted-foreground: 25 5.3% 44.7%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 20 14.3% 4.1%;
+  --card: 0 0% 100%;
+  --card-foreground: 20 14.3% 4.1%;
+  --border: 20 5.9% 90%;
+  --input: 20 5.9% 90%;
+  --primary: 24 100% 63%;  /* FF8440 */
+  --primary-foreground: 0 0% 100%;
+  --secondary: 350 80% 41%;  /* BB162B */
+  --secondary-foreground: 0 0% 100%;
+  --accent: 348 90% 50%;  /* EF0F44 */
+  --accent-foreground: 0 0% 100%;
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 60 9.1% 97.8%;
+  --ring: 24 100% 63%;
+  --radius: 0.5rem;
+
+  /* Chart colors - keeping as is */
+  --chart-1: 220 70% 50%;
+  --chart-2: 180 70% 50%;
+  --chart-3: 40 70% 50%;
+  --chart-4: 300 70% 50%;
+  --chart-5: 100 70% 50%;
+
+  /* Sidebar colors - keeping as is */
+  --sidebar-background: 0 0% 100%;
+  --sidebar-foreground: 222.2 47.4% 11.2%;
+  --sidebar-primary: 222.2 47.4% 11.2%;
+  --sidebar-primary-foreground: 210 40% 98%;
+  --sidebar-accent: 240 4.8% 95.9%;
+  --sidebar-accent-foreground: 222.2 47.4% 11.2%;
+  --sidebar-border: 214.3 31.8% 91.4%;
+  --sidebar-ring: 222.2 84% 4.9%;
+}
+
+.dark {
+  --background: 240 10% 3.9%;
+  --foreground: 0 0% 98%;
+  --muted: 240 3.7% 15.9%;
+  --muted-foreground: 240 5% 64.9%;
+  --popover: 240 10% 3.9%;
+  --popover-foreground: 0 0% 98%;
+  --card: 240 10% 3.9%;
+  --card-foreground: 0 0% 98%;
+  --border: 240 3.7% 15.9%;
+  --input: 240 3.7% 15.9%;
+  --primary: 24 100% 63%;  /* FF8440 */
+  --primary-foreground: 0 0% 100%;
+  --secondary: 350 80% 41%;  /* BB162B */
+  --secondary-foreground: 0 0% 100%;
+  --accent: 348 90% 50%;  /* EF0F44 */
+  --accent-foreground: 0 0% 100%;
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 0 0% 98%;
+  --ring: 24 100% 63%;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-sans antialiased bg-background text-foreground;
+  }
+}
+
+/* Zoho form styling */
+.zcwf_lblLeft .zcwf_col_fld {
+  width: 100%;
+}
+.zcwf_lblLeft .zcwf_col_fld input[type=text], 
+.zcwf_lblLeft .zcwf_col_fld input[type=email], 
+.zcwf_lblLeft .zcwf_col_fld textarea {
+  width: 100%;
+  border: 1px solid hsl(var(--border));
+  border-radius: var(--radius);
+  padding: 0.75rem;
+  font-size: 0.875rem;
+  line-height: 1.5rem;
+  background-color: white;
+  transition: border-color 0.2s;
+}
+.zcwf_lblLeft .zcwf_col_fld input[type=text]:focus, 
+.zcwf_lblLeft .zcwf_col_fld input[type=email]:focus, 
+.zcwf_lblLeft .zcwf_col_fld textarea:focus {
+  outline: none;
+  border-color: hsl(var(--primary));
+  box-shadow: 0 0 0 1px hsl(var(--primary));
+}
+.zcwf_lblLeft .zcwf_button {
+  background-color: hsl(var(--primary));
+  color: white;
+  font-weight: 600;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius);
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+.zcwf_lblLeft .zcwf_button:hover {
+  background-color: hsl(var(--primary) / 0.9);
+}
+.zcwf_lblLeft .zcwf_row {
+  margin-bottom: 1rem;
+}
+.zcwf_lblLeft .zcwf_col_lab {
+  font-weight: 500;
+  font-size: 0.875rem;
+  margin-bottom: 0.5rem;
+  display: block;
+  color: hsl(var(--foreground));
+}
+.zcwf_lblTopHeading {
+  display: none;
+}
