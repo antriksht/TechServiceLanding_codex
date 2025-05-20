@@ -50,6 +50,12 @@ const Header: React.FC = () => {
             Overview
           </button>
           <button
+            onClick={() => handleNavigation("bpocalculator")}
+            className="text-lg font-bold text-gray-700 hover:text-primary transition-colors"
+          >
+            Calculator
+          </button>
+          <button
             onClick={() => handleNavigation("services")}
             className="text-lg font-bold text-gray-700 hover:text-primary transition-colors"
           >
@@ -89,6 +95,12 @@ const Header: React.FC = () => {
             className="block py-2 text-sm font-bold text-gray-700 hover:text-primary w-full text-left"
           >
             Overview
+          </button>
+          <button
+            onClick={() => handleNavigation("bpocalculator")}
+            className="block py-2 text-sm font-bold text-gray-700 hover:text-primary w-full text-left"
+          >
+            Calculator
           </button>
           <button
             onClick={() => handleNavigation("services")}

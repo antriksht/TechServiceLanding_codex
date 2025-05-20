@@ -6,18 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <style>
       body {
-        margin: 0;
-        padding: 20px;
+        margin: -20;
+        padding: 0;
         font-family: sans-serif;
       }
     </style>
   </head>
   <body>
     <div id="formContainer"></div>
-    <script
-      id="formScript5637176000023189080"
-      src="https://crm.zoho.com/crm/WebFormServeServlet?rid=99633c0bcd86d1321a445a9784e86ebe32ffae7787ba56020afa2ba3be36aca411ac88a84eb2724022dfeee79888ac35gid3f8136f40b77c8376d6c66397b853ac95637ce94548b5fa8890a812b98f8650a&script=$sYG"
-    ></script>
+    <script id='formScript5637176000025292038' src='https://crm.zoho.com/crm/WebFormServeServlet?rid=014f6178e78635d74a8e7f1428abc97067883e542a874cc0130b856534b0deb4034da14b0d4aef394448cbc134434058gid62384837d87107a1e7d2356d3192767090008f460fb3c20cda3a16f5491c7e55&script=$sYG'></script>
+ 
     <style>
       :root {
         --background: 0 0% 100%;
@@ -42,6 +40,8 @@
 
       html {
         scroll-behavior: smooth;
+        margin-top: 0 !important;
+        padding-top: 0 !important;
       }
 
       body {
@@ -50,6 +50,8 @@
         color: hsl(var(--foreground));
         padding: 0em;
         max-width: 100%;
+        margin-top: 0 !important;
+        padding-top: 0 !important;
         margin: auto;
       }
 
@@ -59,8 +61,8 @@
       }
 
       .zcwf_lblLeft .zcwf_col_lab {
-        font-weight: 500;
-        font-size: 0.875rem;
+        font-weight: 700;
+        font-size: 1rem;
         margin-bottom: 0.2rem;
         display: block;
         color: hsl(var(--muted-foreground));
@@ -78,9 +80,9 @@
         width: 100%;
         border: 1px solid hsl(var(--border));
         border-radius: var(--radius);
-        padding: 0.75rem;
+        padding: 0.4rem 0.6rem;
         font-size: 0.875rem;
-        line-height: 1.5rem;
+        line-height: 1.2rem;
         background-color: white;
         transition:
           border-color 0.2s,
@@ -128,23 +130,31 @@
     </style>
 
     <script>
-      function sendHeightToParent() {
-        const height = document.body.scrollHeight;
-        window.parent.postMessage({ type: "ZOHO_FORM_HEIGHT", height }, "*");
-      }
+  let lastHeight = 0;
+  let timeout;
 
-      // Observe DOM changes (Zoho loads form dynamically)
-      const observer = new MutationObserver(() => {
-        sendHeightToParent();
-      });
+  function sendHeightToParent() {
+    const height = document.body.scrollHeight;
+    if (Math.abs(height - lastHeight) > 20) {
+      lastHeight = height;
+      window.parent.postMessage({ type: "ZOHO_FORM_HEIGHT", height }, "*");
+    }
+  }
 
-      observer.observe(document.body, {
-        childList: true,
-        subtree: true,
-      });
+  const observer = new MutationObserver(() => {
+    clearTimeout(timeout);
+    timeout = setTimeout(sendHeightToParent, 300);
+  });
 
-      // Also send initial height after delay
-      setTimeout(sendHeightToParent, 1000);
-    </script>
+  observer.observe(document.body, {
+    childList: true,
+    subtree: true,
+  });
+
+  // Ensure height is sent on load as well
+  window.addEventListener("load", () => {
+    setTimeout(sendHeightToParent, 1000);
+  });
+</script>
   </body>
 </html>

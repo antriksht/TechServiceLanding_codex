@@ -14,7 +14,8 @@ import {
   CircleStackIcon,
   ShieldCheckIcon
 } from "@heroicons/react/24/outline";
-import { scrollToSection } from "@/lib/utils"; // Make sure this exists
+import { scrollToSection } from "@/lib/utils";
+import BPOCalculator from "@/components/BPOCalculator";
 
 const MainHeading: React.FC = () => {
   const boxRefs = useRef<(HTMLDivElement | null)[]>([]);
@@ -85,7 +86,7 @@ const MainHeading: React.FC = () => {
           <div
             key={index}
             ref={(el) => (boxRefs.current[index] = el)}
-            className="flex items-start space-x-4 p-4 rounded-lg bg-white shadow-sm border border-gray-200 transition-all hover:shadow-md"
+            className="flex items-start space-x-4 p-4 rounded-lg bg-white shadow-sm border border-gray-400 transition-all hover:shadow-md"
           >
             {item.icon}
             <span className="text-gray-600">{item.text}</span>
@@ -132,6 +133,13 @@ const Home: React.FC = () => {
             <CertificationsSection />
             <TrustedBySection />
             {typeof window !== "undefined" && window.innerWidth < 1024 ? (
+                <section id="bpocalculator" className="scroll-mt-32">
+                  <BPOCalculator />
+                </section>
+              ) : (
+                <BPOCalculator />
+              )}
+            {typeof window !== "undefined" && window.innerWidth < 1024 ? (
                 <section id="services" className="scroll-mt-32">
                   <ServicesSection />
                 </section>
@@ -163,6 +171,13 @@ const Home: React.FC = () => {
               <MainHeading />
               <CertificationsSection />
               <TrustedBySection />
+              {typeof window !== "undefined" && window.innerWidth >= 1024 ? (
+                  <section id="bpocalculator" className="scroll-mt-32">
+                    <BPOCalculator />
+                  </section>
+                ) : (
+                  <BPOCalculator />
+                )}
               {typeof window !== "undefined" && window.innerWidth >= 1024 ? (
                   <section id="services" className="scroll-mt-32">
                     <ServicesSection />

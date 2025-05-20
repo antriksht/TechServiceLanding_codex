@@ -52,7 +52,7 @@ const LocationsSection: React.FC = () => {
   ];
 
   return (
-    <section className="py-12 mb-12">
+    <section className="py-12 mb-12 bg-gray-50">
       <div className="text-center mb-8">
         <h2 className="text-3xl font-bold mb-6">
           Delivering Excellence Across the Globe

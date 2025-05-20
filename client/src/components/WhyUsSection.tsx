@@ -3,7 +3,7 @@ import { Lightbulb, Shield } from "lucide-react";
 
 const WhyUsSection: React.FC = () => {
   return (
-    <section className="py-12 mb-12 bg-gray-50 -mx-4 px-4 rounded-xl">
+    <section className="py-12 mb-12 -mx-4 px-4 rounded-xl">
       <div className="text-center mb-8">
         <h2 className="text-3xl font-bold mb-6">Why Intelegencia?</h2>
       </div>
