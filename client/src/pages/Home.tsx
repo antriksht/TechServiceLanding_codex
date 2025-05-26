@@ -204,11 +204,14 @@ const Home: React.FC = () => {
             </div>
 
             {/* Right Column - Sticky Form */}
-            <div className="w-1/3 pl-12 pr-4">
-              <div className="sticky top-24 max-h-screen h-[calc(100vh-150px)] flex items-center">
-                <ContactForm />
+              <div className="w-1/3 pl-12 pr-4">
+                <div className="sticky top-24 max-h-screen h-[calc(100vh-150px)] flex items-center">
+                  {/* ✅ Make ContactForm stretch fully */}
+                  <div className="w-full min-w-0">
+                    <ContactForm />
+                  </div>
+                </div>
               </div>
-            </div>
           </div>
         </div>
       </main>
