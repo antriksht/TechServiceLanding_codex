@@ -27,9 +27,6 @@ const ContactForm: React.FC = () => {
       <Card className="bg-white rounded-xl shadow-xl overflow-hidden border-t-4 border-primary">
         <div className="bg-gradient-to-r from-primary/10 to-accent/10 py-4 px-6">
           <h3 className="text-xl font-semibold text-gray-800">Get Started Now</h3>
-          <p className="text-gray-600">
-            Fill out the form below and we'll be in touch soon.
-          </p>
         </div>
         <CardContent className="p-0"> {/* Remove padding to save vertical space */}
           <div
@@ -42,7 +39,7 @@ const ContactForm: React.FC = () => {
             <iframe
               ref={iframeRef}
               id="zohoFormFrame"
-              src="/zoho_form.html"
+              src="/zoho_form_raw_html.html"
               style={{
                 width: "100%",
                 border: "none",
