@@ -280,5 +280,19 @@
           }, 1000); // Delay for Zoho to process
         }
       </script>
+      <script>
+        window.addEventListener("load", () => {
+          const params = new URLSearchParams(window.location.search);
+          const form = document.getElementById("webform5637176000025292038");
+
+          params.forEach((value, key) => {
+            const hidden = document.createElement("input");
+            hidden.type = "hidden";
+            hidden.name = key;
+            hidden.value = value;
+            form.appendChild(hidden);
+          });
+        });
+      </script>
    </body>
 </html>
