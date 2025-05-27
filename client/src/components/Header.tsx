@@ -25,7 +25,7 @@ const Header: React.FC = () => {
     <header
       id="top"
       className={`fixed top-0 left-0 w-full z-50 bg-white transition-all duration-300 ${
-        isScrolled ? "py-2 shadow-md" : "py-1"
+        isScrolled ? "py-0.5 shadow-md" : "py-1"
       }`}
     >
       <div className="container mx-auto px-4 flex items-center justify-between">
@@ -33,7 +33,7 @@ const Header: React.FC = () => {
           <img
             src="/logo_2.svg"
             alt="Intelegencia Logo"
-            className="h-15 w-auto max-h-20"
+            className="h-14 w-auto max-h-15"
           />
         </a>
 

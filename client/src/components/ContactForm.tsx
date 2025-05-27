@@ -16,7 +16,10 @@ const ContactForm: React.FC = () => {
           iframeRef.current.style.height = `${Math.min(event.data.height, maxHeight)}px`;
         }
       }
-    };
+      if (event.data?.type === "ZOHO_FORM_SUBMITTED") {
+      alert("Thank you! Your form was submitted.");
+    }
+  };
 
     window.addEventListener("message", handleMessage);
     return () => window.removeEventListener("message", handleMessage);
@@ -39,7 +42,7 @@ const ContactForm: React.FC = () => {
             <iframe
               ref={iframeRef}
               id="zohoFormFrame"
-              src="/zoho_form_raw_html.html"
+              src={`/zoho_form_raw_html.html${typeof window !== "undefined" ? window.location.search : ""}`}
               style={{
                 width: "100%",
                 border: "none",
