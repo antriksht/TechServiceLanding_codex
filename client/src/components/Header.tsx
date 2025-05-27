@@ -33,7 +33,7 @@ const Header: React.FC = () => {
           <img
             src="/logo_2.svg"
             alt="Intelegencia Logo"
-            className="h-15 w-auto max-h-15"
+            className="h-10 w-auto max-h-20"
           />
         </a>
 
