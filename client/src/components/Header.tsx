@@ -1,11 +1,21 @@
 import React, { useState, useEffect } from "react";
 import { scrollToSection } from "@/lib/utils";
 import { Menu, X } from "lucide-react";
+import { useLocation } from "wouter";
 
 const Header: React.FC = () => {
+  const [location] = useLocation();
+  const isBPOPage = location === "/" || location === "/bpo";
+
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
+  const handleNavigation = (id: string) => {
+    console.log(`Scrolling to section: ${id}`);
+    scrollToSection(id);
+    setMobileMenuOpen(false);
+  };
+  
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
@@ -14,12 +24,6 @@ const Header: React.FC = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
-  const handleNavigation = (id: string) => {
-    console.log(`Scrolling to section: ${id}`);
-    scrollToSection(id);
-    setMobileMenuOpen(false);
-  };
 
   return (
     <header
@@ -49,12 +53,14 @@ const Header: React.FC = () => {
           >
             Overview
           </button>
-          <button
-            onClick={() => handleNavigation("bpocalculator")}
-            className="text-lg font-bold text-gray-700 hover:text-primary transition-colors"
-          >
-            Calculator
-          </button>
+          {isBPOPage && (
+            <button
+              onClick={() => handleNavigation("bpocalculator")}
+              className="text-lg font-bold text-gray-700 hover:text-primary transition-colors"
+            >
+              Calculator
+            </button>
+          )}
           <button
             onClick={() => handleNavigation("services")}
             className="text-lg font-bold text-gray-700 hover:text-primary transition-colors"
@@ -96,12 +102,14 @@ const Header: React.FC = () => {
           >
             Overview
           </button>
+          {isBPOPage && (
           <button
             onClick={() => handleNavigation("bpocalculator")}
             className="block py-2 text-sm font-bold text-gray-700 hover:text-primary w-full text-left"
           >
             Calculator
           </button>
+          )}
           <button
             onClick={() => handleNavigation("services")}
             className="block py-2 text-sm font-bold text-gray-700 hover:text-primary w-full text-left"

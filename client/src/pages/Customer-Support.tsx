@@ -1,13 +1,14 @@
 import React, { useEffect } from "react";
+import { Helmet } from "react-helmet";
+
 import Header from "@/components/Header";
 import ScrollToTop from "@/components/ScrollToTop";
 import ContactForm from "@/components/ContactForm";
-import Hero from "@/components/Hero";
-import BPOCalculator from "@/components/BPOCalculator";
+import Hero from "@/components/Customer Support/Hero";
 import CertificationsSection from "@/components/CertificationsSection";
 import TrustedBySection from "@/components/TrustedBySection";
-import ServicesSection from "@/components/ServicesSection";
-import WhyUsSection from "@/components/WhyUsSection";
+import ServicesSection from "@/components/Customer Support/ServicesSection";
+import WhyUsSection from "@/components/Customer Support/WhyUsSection";
 import LocationsSection from "@/components/LocationsSection";
 import CTASection from "@/components/CTASection";
 
@@ -31,8 +32,23 @@ const Home: React.FC = () => {
     return () => window.removeEventListener("hashchange", scrollToHash);
   }, []);
 
-  return (
+return (
     <div className="flex flex-col min-h-screen">
+      <Helmet>
+        <title>Customer Support & Help Desk Services | Intelegencia</title>
+        <meta
+          name="description"
+          content="Intelegencia delivers 24/7 multichannel customer support services including inbound/outbound engagement, live chat, email, technical helpdesk, and marketplace support—engineered to boost satisfaction, loyalty, and business growth."
+        />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="Customer Support & Help Desk Services | Intelegencia" />
+        <meta property="og:description" content="Intelegencia delivers 24/7 multichannel customer support services including inbound/outbound engagement, live chat, email, technical helpdesk, and marketplace support—engineered to boost satisfaction, loyalty, and business growth." />
+        <meta property="og:site_name" content="Intelegencia" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Customer Support & Help Desk Services | Intelegencia" />
+        <meta name="twitter:description" content="Intelegencia delivers 24/7 multichannel customer support services including inbound/outbound engagement, live chat, email, technical helpdesk, and marketplace support—engineered to boost satisfaction, loyalty, and business growth." />
+      </Helmet>
+      
       <Header />
 
       <main className="flex-grow pt-24 md:pt-32">
@@ -46,13 +62,6 @@ const Home: React.FC = () => {
             </div>
             <CertificationsSection />
             <TrustedBySection />
-            {typeof window !== "undefined" && window.innerWidth < 1024 ? (
-                <section id="bpocalculator" className="scroll-mt-32">
-                  <BPOCalculator />
-                </section>
-              ) : (
-                <BPOCalculator />
-              )}
             {typeof window !== "undefined" && window.innerWidth < 1024 ? (
                 <section id="services" className="scroll-mt-32">
                   <ServicesSection />
@@ -85,13 +94,6 @@ const Home: React.FC = () => {
               <Hero />
               <CertificationsSection />
               <TrustedBySection />
-              {typeof window !== "undefined" && window.innerWidth >= 1024 ? (
-                  <section id="bpocalculator" className="scroll-mt-32">
-                    <BPOCalculator />
-                  </section>
-                ) : (
-                  <BPOCalculator />
-                )}
               {typeof window !== "undefined" && window.innerWidth >= 1024 ? (
                   <section id="services" className="scroll-mt-32">
                     <ServicesSection />

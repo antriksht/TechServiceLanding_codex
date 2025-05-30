@@ -131,6 +131,12 @@
                   <div class="zcwf_col_help"></div>
                </div>
             </div>
+            <div class="zcwf_row wfrm_fld_dpNn">
+               <div class="zcwf_col_lab" style="font-size:12px; font-family: Arial;"><label for="LEADCF21">Reffered By</label></div>
+               <div class="zcwf_col_fld">
+                  <textarea style="font-family: Arial, sans-serif;" aria-multiline="true" id="LEADCF21" aria-required="false" aria-label="LEADCF21" name="LEADCF21">www.intelegencia.com/ppc</textarea><div class="zcwf_col_help"></div>
+               </div>
+            </div>
             <div class="zcwf_row">
                <div class="zcwf_col_lab"></div>
                <div class="zcwf_col_fld"><input type="submit" id="formsubmit" role="button" class="formsubmit zcwf_button" value="Submit" aria-label="Submit" title="Submit"><input type="reset" class="zcwf_button" role="button" name="reset" value="Reset" aria-label="Reset" title="Reset"></div>
@@ -285,11 +291,20 @@
       </script>
 
       <script>
-        function notifyParentAfterSubmit() {
-          setTimeout(() => {
-            window.parent.postMessage({ type: "ZOHO_FORM_SUBMITTED" }, "*");
-          }, 1000); // Delay for Zoho to process
-        }
+      function notifyParentAfterSubmit() {
+         window.parent.postMessage({ type: "ZOHO_FORM_SUBMITTED" }, "*");
+      }
+
+      window.addEventListener("load", () => {
+         const form = document.querySelector("form");
+         if (form) {
+            form.addEventListener("submit", () => {
+            setTimeout(() => {
+               notifyParentAfterSubmit();
+            }, 500); // enough time before redirect
+            });
+         }
+      });
       </script>
       <script>
         window.addEventListener("load", () => {
@@ -305,5 +320,14 @@
           });
         });
       </script>
+      <script>
+         window.addEventListener("load", () => {
+            let referredby = document.getElementById('LEADCF21');
+            if (referredby) {
+               referredby.value = window.location.href;
+            }
+         });
+      </script>
+
    </body>
 </html>

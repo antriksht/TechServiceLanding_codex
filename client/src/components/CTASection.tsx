@@ -28,8 +28,7 @@ const CTASection: React.FC = () => {
         </div>
 
         <p className="text-white text-lg mb-8 max-w-2xl mx-auto">
-          Let's discuss how our application engineering services can help you
-          achieve your business goals.
+          Let's discuss how our services can help you accelerate growth, improve efficiency, and achieve your business goals.
         </p>
       </div>
       <div className="text-center mt-8 text-white text-sm opacity-100">
