@@ -7,26 +7,35 @@ const ContactForm: React.FC = () => {
 
   useEffect(() => {
     const handleMessage = (event: MessageEvent) => {
+      // Adjust iframe height on form content change
       if (
         event.data?.type === "ZOHO_FORM_HEIGHT" &&
         typeof event.data.height === "number"
       ) {
         if (iframeRef.current) {
-          // Ensure it never exceeds visible viewport height
-          const maxHeight = window.innerHeight - 120; // 120 = header + some spacing
+          const maxHeight = window.innerHeight - 120; // Adjust based on layout
           iframeRef.current.style.height = `${Math.min(event.data.height, maxHeight)}px`;
         }
       }
+
+      // On form submission
       if (event.data?.type === "ZOHO_FORM_SUBMITTED") {
-      alert("Thank you for submitting your response. We will reach out to you soon.");
-      setSubmitted(true);
-      window.dataLayer = window.dataLayer || [];
-      window.dataLayer.push({
-        event: "zoho_form_submit", // You can customize this name
-        submittedAt: new Date().toISOString(),
-      });
-    }
-  };
+        alert("Thank you for submitting your response. We will reach out to you soon.");
+        setSubmitted(true);
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+          event: "zoho_form_submit",
+          submittedAt: new Date().toISOString(),
+        });
+      }
+
+      // Forward GTM click events from iframe
+      if (event.data?.type === "GTM_CLICK_EVENT" && event.data.data) {
+        console.log("Iframe GTM click event received:", event.data.data);
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push(event.data.data);
+      }
+    };
 
     window.addEventListener("message", handleMessage);
     return () => window.removeEventListener("message", handleMessage);

@@ -332,6 +332,24 @@
             }
          });
       </script>
+      <script>
+         // Observe dataLayer for any gtm.click events
+         const originalPush = window.dataLayer.push;
+
+         window.dataLayer.push = function () {
+            const args = Array.from(arguments);
+            for (const item of args) {
+               if (item?.event === "gtm.click") {
+               // Send the full event object to the parent
+               window.parent.postMessage({
+                  type: "GTM_CLICK_EVENT",
+                  data: item,
+               }, "*");
+               }
+            }
+            return originalPush.apply(this, arguments);
+         };
+      </script>
 
    </body>
 </html>
