@@ -30,7 +30,7 @@ const ContactForm: React.FC = () => {
       }
 
       // Forward GTM click events from iframe
-      if (event.data?.type === "GTM_CLICK_EVENT" && event.data.data) {
+      if (event.data?.type === "GTM_CLICK_EVENT") {
         console.log("Iframe GTM click event received:", event.data.data);
         window.dataLayer = window.dataLayer || [];
         window.dataLayer.push(event.data.data);
@@ -40,6 +40,7 @@ const ContactForm: React.FC = () => {
     window.addEventListener("message", handleMessage);
     return () => window.removeEventListener("message", handleMessage);
   }, []);
+
 
     let iframeSrc = "/zoho_form_raw_html.html";
       if (typeof window !== "undefined") {
