@@ -127,7 +127,7 @@
             <div class="zcwf_row wfrm_fld_dpNn">
                <div class="zcwf_col_lab" style="font-size:12px; font-family: Arial;"><label for="Website">Website</label></div>
                <div class="zcwf_col_fld">
-                  <input type="text" id="Website" aria-required="false" aria-label="Website" name="Website" aria-valuemax="255" maxlength="255" value="www.intelegencia.com">
+                  <input type="text" id="Website" aria-required="false" aria-label="Website" name="Website" aria-valuemax="255" maxlength="255" value="services.intelegencia.com">
                   <div class="zcwf_col_help"></div>
                </div>
             </div>
@@ -333,22 +333,41 @@
          });
       </script>
       <script>
-         // Observe dataLayer for any gtm.click events
-         const originalPush = window.dataLayer.push;
+      const originalPush = window.dataLayer.push;
 
-         window.dataLayer.push = function () {
-            const args = Array.from(arguments);
-            for (const item of args) {
-               if (item?.event === "gtm.click") {
-               // Send the full event object to the parent
-               window.parent.postMessage({
-                  type: "GTM_CLICK_EVENT",
-                  data: item,
-               }, "*");
+      window.dataLayer.push = function () {
+         const args = Array.from(arguments);
+
+         for (const item of args) {
+            if (item?.event === "gtm.click") {
+            // Create a sanitized copy
+            const safeItem = {};
+
+            for (const key in item) {
+               // Skip keys with HTML elements or functions
+               const value = item[key];
+               if (
+                  typeof value === "function" ||
+                  value instanceof HTMLElement ||
+                  value instanceof Node
+               ) {
+                  continue;
                }
+
+               // Shallow copy safe values
+               safeItem[key] = value;
             }
-            return originalPush.apply(this, arguments);
-         };
+
+            // Send sanitized copy to parent
+            window.parent.postMessage({
+               type: "GTM_CLICK_EVENT",
+               data: safeItem
+            }, "*");
+            }
+         }
+
+         return originalPush.apply(this, arguments);
+      };
       </script>
 
    </body>
