@@ -20,7 +20,7 @@ const ContactForm: React.FC = () => {
 
       // On form submission
       if (event.data?.type === "ZOHO_FORM_SUBMITTED") {
-        alert("Thank you for submitting your response. We will reach out to you soon.");
+        //alert("Thank you for submitting your response. We will reach out to you soon.");
         setSubmitted(true);
         window.dataLayer = window.dataLayer || [];
         window.dataLayer.push({
@@ -42,7 +42,7 @@ const ContactForm: React.FC = () => {
   }, []);
 
 
-    let iframeSrc = "/zoho_form_raw_html.html";
+    let iframeSrc = "/zoho_form_no_validation.html";
       if (typeof window !== "undefined") {
         const queryParams = new URLSearchParams(window.location.search);
         const pathname = window.location.pathname.replace(/^\//, ""); // remove leading slash
