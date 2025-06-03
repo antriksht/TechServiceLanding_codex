@@ -38,7 +38,7 @@
                 action="https://crm.zoho.com/crm/WebToLeadForm"
                 name="WebToLeads5637176000025292038"
                 method="POST"
-                onsubmit='javascript:document.charset="UTF-8"; if (!checkMandatory5637176000025292038()) return false;; notifyParentAfterSubmit()' accept-charset="UTF-8">
+                onsubmit='javascript:document.charset="UTF-8"; if (!checkMandatory5637176000025292038()) return false; notifyParentAfterSubmit()' accept-charset="UTF-8">
                 <input type="text" style="display: none;" name="xnQsjsdp" value="b3363d0c724ba375366a5f02050764027303dc72b18ac102c9a6985ddbda742a" /> <input type="hidden" name="zc_gad" id="zc_gad" value="" />
                 <input type="text" style="display: none;" name="xmIwtLD" value="bfc49b24241ddc8abde69ac03374d9c81481f6e1d6af9e16578e5da4583b23646dea810069f8e1e6eaf8836a5dd82d99" />
                 <input type="text" style="display: none;" name="actionType" value="TGVhZHM=" /> <input type="text" style="display: none;" name="returnURL" value="null" />
@@ -367,7 +367,13 @@
                     <div class="zcwf_col_fld">
                         <input type="submit" id="formsubmit" role="button" class="formsubmit zcwf_button" value="Submit" aria-label="Submit" title="Submit" />
                         <input type="reset" class="zcwf_button" role="button" name="reset" value="Reset" aria-label="Reset" title="Reset" />
-                    </div>
+                        <span id="submitSpinner" style="display:none; margin-left:10px;">
+                              <svg xmlns="http://www.w3.org/2000/svg" class="spin" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="gray" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                 <circle cx="12" cy="12" r="10" stroke-opacity="0.25"/>
+                                 <path d="M4 12a8 8 0 018-8" />
+                              </svg>
+                        </span>
+                     </div>
                 </div>
                 <script>
                     function addAriaSelected5637176000025292038() {
@@ -467,6 +473,7 @@
                             webform.appendChild(smarturlfield);
                         }
                         document.querySelector(".crmWebToEntityForm .formsubmit").setAttribute("disabled", true);
+                        document.getElementById("submitSpinner").style.display = "inline-block";
                         return true;
                     }
                     function tooltipShow5637176000025292038(el) {
@@ -486,6 +493,13 @@
             </form>
         </div>
         <style>
+            .spin {
+               animation: spin 1s linear infinite;
+            }
+            @keyframes spin {
+               0% { transform: rotate(0deg); }
+               100% { transform: rotate(360deg); }
+            }
             .name-duo-row {
               display: flex;
               gap: 1rem;
@@ -635,23 +649,22 @@
             function notifyParentAfterSubmit() {
                 window.parent.postMessage({ type: "ZOHO_FORM_SUBMITTED" }, "*");
             }
-         </script>
-         <script>
-          //  window.addEventListener("load", () => {
-           //    const form = document.getElementById("webform5637176000025292038");
-           //    if (form) {
-           //       form.addEventListener("submit", function (e) {
-           //          e.preventDefault();
-           //          const isValid = checkMandatory5637176000025292038();
+            
+            window.addEventListener("load", () => {
+               const form = document.getElementById("webform5637176000025292038");
+               if (form) {
+                  form.addEventListener("submit", function (e) {
+                     e.preventDefault();
+                     const isValid = checkMandatory5637176000025292038();
 
-           //          if (isValid) {
-           //          notifyParentAfterSubmit();
-           //          // Submit properly using native method
-           //          HTMLFormElement.prototype.submit.call(form);
-           //          }
-           //       });
-           //    }
-           //    });
+                     if (isValid) {
+                     notifyParentAfterSubmit();
+                     // Submit properly using native method
+                     HTMLFormElement.prototype.submit.call(form);
+                     }
+                  });
+               }
+            });
         </script>
         <script>
             window.addEventListener("load", () => {
