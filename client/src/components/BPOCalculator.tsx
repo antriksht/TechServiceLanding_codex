@@ -2,6 +2,12 @@ import React, { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { DollarSign } from "lucide-react";
 
+export const computeSavings = (numAgents: number, hourlyRate: number) => {
+  const currentCost = numAgents * hourlyRate * 40 * 52 * 1.2;
+  const ourServiceCost = numAgents * 7 * 170 * 12;
+  return currentCost - ourServiceCost;
+};
+
 const BPOCalculator: React.FC = () => {
   const [agents, setAgents] = useState<number | "">("");
   const [rate, setRate] = useState<number | "">("");
@@ -16,9 +22,7 @@ const BPOCalculator: React.FC = () => {
       return;
     }
 
-    const currentCost = numAgents * hourlyRate * 40 * 52 * 1.2;
-    const ourServiceCost = numAgents * 7 * 170 * 12;
-    const savings = currentCost - ourServiceCost;
+    const savings = computeSavings(numAgents, hourlyRate);
 
     if (savings < 0) {
       setMessage("Your case might qualify for a special rate. Let's connect.");
@@ -61,7 +65,9 @@ const BPOCalculator: React.FC = () => {
                 type="number"
                 className="w-full border rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-primary"
                 value={agents}
-                onChange={(e) => setAgents(Number(e.target.value))}
+                onChange={(e) =>
+                  setAgents(e.target.value === "" ? "" : Number(e.target.value))
+                }
               />
             </div>
 
@@ -73,7 +79,9 @@ const BPOCalculator: React.FC = () => {
                 type="number"
                 className="w-full border rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-primary"
                 value={rate}
-                onChange={(e) => setRate(Number(e.target.value))}
+                onChange={(e) =>
+                  setRate(e.target.value === "" ? "" : Number(e.target.value))
+                }
               />
             </div>
           </div>
