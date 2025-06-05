@@ -44,7 +44,7 @@ Follow these instructions to get a copy of the project up and running on your lo
     ```
 2.  Navigate to the project directory:
     ```bash
-    cd rest-express
+    cd TechServiceLanding_codex
     ```
 3.  Install the dependencies:
     ```bash

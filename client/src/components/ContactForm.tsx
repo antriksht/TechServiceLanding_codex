@@ -3,6 +3,7 @@ import { Card, CardContent } from "@/components/ui/card";
 
 const ContactForm: React.FC = () => {
   const iframeRef = useRef<HTMLIFrameElement>(null);
+  const sectionRef = useRef<HTMLElement>(null);
   const [submitted, setSubmitted] = useState(false);
 
   useEffect(() => {
@@ -29,6 +30,7 @@ const ContactForm: React.FC = () => {
 
         setTimeout(() => {
           setSubmitted(true);
+          sectionRef.current?.scrollIntoView({ behavior: "smooth" });
         }, 2000);
       }
 
@@ -56,7 +58,11 @@ const ContactForm: React.FC = () => {
 
 
   return (
-    <section id="contact-form" className="scroll-mt-28 md:scroll-mt-32 lg:scroll-mt-40">
+    <section
+      id="contact-form"
+      ref={sectionRef}
+      className="scroll-mt-28 md:scroll-mt-32 lg:scroll-mt-40"
+    >
       <Card className="bg-white rounded-xl shadow-xl overflow-hidden border-t-4 border-primary">
         <div className="bg-gradient-to-r from-primary/10 to-accent/10 py-4 px-6">
           <h3 className="text-xl text-center font-semibold text-gray-800">Get Started Now</h3>
