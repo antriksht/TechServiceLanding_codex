@@ -35,18 +35,18 @@ const Home: React.FC = () => {
 return (
     <div className="flex flex-col min-h-screen">
       <Helmet>
-        <title>Cloud & DevOps Services | Intelegencia</title>
+        <title>Quality Engineering & Assurance | Intelegencia</title>
         <meta
           name="description"
-          content="Intelegencia provides scalable Cloud and DevOps solutions including cloud migration, IaC, CI/CD, and disaster recovery—engineered to boost performance, security, and operational agility."
+          content="Intelegencia delivers comprehensive QA engineering and testing services to ensure software quality and accelerate release cycles."
         />
         <meta property="og:type" content="website" />
-        <meta property="og:title" content="Cloud & DevOps Services | Intelegencia" />
-        <meta property="og:description" content="Intelegencia provides scalable Cloud and DevOps solutions including cloud migration, IaC, CI/CD, and disaster recovery—engineered to boost performance, security, and operational agility." />
+        <meta property="og:title" content="Quality Engineering & Assurance | Intelegencia" />
+        <meta property="og:description" content="Intelegencia delivers comprehensive QA engineering and testing services to ensure software quality and accelerate release cycles." />
         <meta property="og:site_name" content="Intelegencia" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Cloud & DevOps Services | Intelegencia" />
-        <meta name="twitter:description" content="Intelegencia provides scalable Cloud and DevOps solutions including cloud migration, IaC, CI/CD, and disaster recovery—engineered to boost performance, security, and operational agility." />
+        <meta name="twitter:title" content="Quality Engineering & Assurance | Intelegencia" />
+        <meta name="twitter:description" content="Intelegencia delivers comprehensive QA engineering and testing services to ensure software quality and accelerate release cycles." />
       </Helmet>
       
       <Header />
